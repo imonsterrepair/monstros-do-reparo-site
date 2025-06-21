@@ -1,11 +1,297 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
-  padding: 20px;
-  background-color: #000;
-  color: #fff;
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-  color: #ffc107; /* Dourado */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: #000000;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00ffff, #ffd700);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #00cccc, #ffcc00);
+}
+
+/* Animações */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Efeitos de hover */
+.hover-glow:hover {
+  animation: glow 2s infinite;
+}
+
+.hover-pulse:hover {
+  animation: pulse 1s infinite;
+}
+
+/* Gradientes personalizados */
+.gradient-text {
+  background: linear-gradient(45deg, #00ffff, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, #00ffff, #ffd700);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* Efeitos de circuito */
+.circuit-bg {
+  background-image: 
+    radial-gradient(circle at 25% 25%, #00ffff22 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, #ffd70022 2px, transparent 2px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+}
+
+/* Botões personalizados */
+.btn-primary {
+  background: linear-gradient(45deg, #ffd700, #ffcc00);
+  color: #000000;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #ffcc00, #ff9900);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+}
+
+.btn-secondary {
+  background: linear-gradient(45deg, #00ffff, #00cccc);
+  color: #000000;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(45deg, #00cccc, #009999);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+}
+
+/* Cards */
+.card {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(0, 255, 255, 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+}
+
+.card-yellow {
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.card-yellow:hover {
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+}
+
+/* Formulários */
+.form-input {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #ffffff;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Contadores */
+.counter-box {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  min-width: 80px;
+}
+
+.counter-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00ffff;
+  line-height: 1;
+}
+
+.counter-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Seções */
+.section {
+  padding: 5rem 1rem;
+}
+
+.section-dark {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+.section-gradient {
+  background: linear-gradient(135deg, #000000 0%, #001a1a 50%, #1a1a00 100%);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+  
+  .counter-number {
+    font-size: 1.5rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animações de entrada */
+.animate-in {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Efeitos especiais */
+.neon-text {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px currentColor;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Loader */
+.loader {
+  border: 4px solid rgba(0, 255, 255, 0.3);
+  border-top: 4px solid #00ffff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
