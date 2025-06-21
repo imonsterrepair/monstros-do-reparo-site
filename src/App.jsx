@@ -1,19 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SalesPage from './components/SalesPage';
-import CapturePage from './components/CapturePage';
-import ThankYouPage from './components/ThankYouPage';
-import './App.css';
+import SalesPage from './components/SalesPage'; // Importa o componente da página de vendas
+import './App.css'; // Importa o CSS global
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<SalesPage />} />
-          <Route path="/captura" element={<CapturePage />} />
-          <Route path="/obrigado" element={<ThankYouPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      <SalesPage /> {/* Renderiza a página de vendas aqui */}
+    </div>
   );
+}
+
+export default App;
